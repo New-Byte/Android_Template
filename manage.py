@@ -35,13 +35,13 @@ try:
 		f.write("*.iml\n.gradle\n/local.properties\n/.idea/caches\n/.idea/libraries\n/.idea/modules.xml\n/.idea/workspace.xml\n/.idea/navEditor.xml\n/.idea/assetWizardSettings.xml\n.DS_Store\n/build\n/captures\n.externalNativeBuild\n.cxx")
 		f.close()
 
-		# Rename folders to hidden folders
-		print("Renaming hidden dirs")
-		os.system("pwd")
-		os.system("ren "+ arglist[2]+"/android/gradle " + ".gradle")
-		os.system("ren " + arglist[2]+"/android/idea "+ ".idea")
-
 		# Search for meraBharat in each file and replace it with app_name (arglist[2])
+
+		# Write new code here...
+
+		# Rename folders to hidden folders
+		# This part is done in batch file
+		print("Renaming hidden dirs")
 except:
 	print("============================================")
 	print("\nmanage.py expects at least 1 argument,\n0 were given.\n\nE.g.: python manage.py --help\n")
