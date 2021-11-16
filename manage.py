@@ -37,6 +37,7 @@ try:
 
 		# Rename folders to hidden folders
 		print("Renaming hidden dirs")
+		os.system("pwd")
 		os.system("ren "+ arglist[2]+"/android/gradle " + ".gradle")
 		os.system("ren " + arglist[2]+"/android/idea "+ ".idea")
 
