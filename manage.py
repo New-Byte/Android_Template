@@ -18,7 +18,7 @@ try:
 	elif arglist[1] == "-c" or arglist[1] == "create":
 		# Clone repository from github and remove .git dir.
 		# os.system("git clone https://github.com/New-Byte/Android_Template.git")
-		print("Removing .git")
+		os.system("attrib -h .git")
 		os.rmdir(".git")
 
 		# Write README.md
@@ -27,7 +27,6 @@ try:
 		f.close()
 
 		# Rename root folder
-		print("Renaming root dir")
 		os.system("ren " +"template " + arglist[2])
 
 		# Add gitignore file
@@ -36,7 +35,6 @@ try:
 		f.close()
 
 		# Rename folders to hidden folders
-		print("Renaming hidden dirs")
 		os.rename(arglist[2]+"/android/gradle", arglist[2]+"/android/.gradle")
 		os.rename(arglist[2]+"/android/idea", arglist[2]+"/android/.idea")
 
