@@ -28,17 +28,17 @@ try:
 
 		# Rename root folder
 		print("Renaming root dir")
-		os.system("ren " +arglist[2] "/template " + arglist[2])
+		os.system("ren " +arglist[2]+"/template " + arglist[2])
 
 		# Add gitignore file
-		f = open(arglist[2]+"/.gitignore","w")
+		f = open(arglist[2]+"/"+arglist[2]+"/android/.gitignore","w")
 		f.write("*.iml\n.gradle\n/local.properties\n/.idea/caches\n/.idea/libraries\n/.idea/modules.xml\n/.idea/workspace.xml\n/.idea/navEditor.xml\n/.idea/assetWizardSettings.xml\n.DS_Store\n/build\n/captures\n.externalNativeBuild\n.cxx")
 		f.close()
 
 		# Rename folders to hidden folders
 		print("Renaming hidden dirs")
-		os.system("ren "+arglist[2]+"/gradle " + arglist[2]+"/.gradle")
-		os.system("ren " + arglist[2]+"/idea "+ arglist[2]+"/.idea")
+		os.system("ren "+arglist[2]+"/"+arglist[2]+"/gradle " + arglist[2]+"/"+arglist[2]+"/.gradle")
+		os.system("ren " + arglist[2]+"/"+arglist[2]+"/idea "+ arglist[2]+"/"+arglist[2]+"/.idea")
 
 		# Search for meraBharat in each file and replace it with app_name (arglist[2])
 except:
