@@ -28,7 +28,7 @@ try:
 
 		# Rename root folder
 		print("Renaming root dir")
-		os.rename("template",arglist[2])
+		os.system("ren template " + arglist[2])
 
 		# Add gitignore file
 		f = open(arglist[2]+"/.gitignore","w")
@@ -37,8 +37,8 @@ try:
 
 		# Rename folders to hidden folders
 		print("Renaming hidden dirs")
-		os.rename(arglist[2]+"/gradle",arglist[2]+"/.gradle")
-		os.rename(arglist[2]+"/idea",arglist[2]+"/.idea")
+		os.system("ren "+arglist[2]+"/gradle " + arglist[2]+"/.gradle")
+		os.system("ren " + arglist[2]+"/idea "+ arglist[2]+"/.idea")
 
 		# Search for meraBharat in each file and replace it with app_name (arglist[2])
 except:
