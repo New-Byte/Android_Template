@@ -37,8 +37,8 @@ try:
 
 		# Rename folders to hidden folders
 		print("Renaming hidden dirs")
-		os.rename(arglist[2]+"/android/gradle", ".gradle")
-		os.rename(arglist[2]+"/android/idea", ".idea")
+		os.rename(arglist[2]+"/android/gradle", arglist[2]+"/android/.gradle")
+		os.rename(arglist[2]+"/android/idea", arglist[2]+"/android/.idea")
 
 		# Search for meraBharat in each file and replace it with app_name (arglist[2])
 except:
