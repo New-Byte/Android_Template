@@ -19,26 +19,26 @@ try:
 		# Clone repository from github and remove .git dir.
 		# os.system("git clone https://github.com/New-Byte/Android_Template.git")
 		print("Removing .git")
-		os.system("rmdir Android_Template/.git")
+		os.system("rmdir ./.git")
 
 		# Write README.md
-		f = open("Android_Template/README.md","w")
+		f = open("./README.md","w")
 		f.write("# " + arglist[2] + "\n" + "Project Description")
 		f.close()
 
 		# Rename root folder
 		print("Renaming root dir")
-		os.system("ren " +arglist[2]+"/template " + arglist[2])
+		os.system("ren " +"template " + arglist[2])
 
 		# Add gitignore file
-		f = open(arglist[2]+"/"+arglist[2]+"/android/.gitignore","w")
+		f = open(arglist[2]+"/android/.gitignore","w")
 		f.write("*.iml\n.gradle\n/local.properties\n/.idea/caches\n/.idea/libraries\n/.idea/modules.xml\n/.idea/workspace.xml\n/.idea/navEditor.xml\n/.idea/assetWizardSettings.xml\n.DS_Store\n/build\n/captures\n.externalNativeBuild\n.cxx")
 		f.close()
 
 		# Rename folders to hidden folders
 		print("Renaming hidden dirs")
-		os.system("ren "+arglist[2]+"/"+arglist[2]+"/gradle " + arglist[2]+"/"+arglist[2]+"/.gradle")
-		os.system("ren " + arglist[2]+"/"+arglist[2]+"/idea "+ arglist[2]+"/"+arglist[2]+"/.idea")
+		os.system("ren "+ arglist[2]+"/android/gradle " + arglist[2]+"/android/.gradle")
+		os.system("ren " + arglist[2]+"/android/idea "+ arglist[2]+"/android/.idea")
 
 		# Search for meraBharat in each file and replace it with app_name (arglist[2])
 except:
