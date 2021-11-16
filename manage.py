@@ -19,7 +19,7 @@ try:
 		# Clone repository from github and remove .git dir.
 		# os.system("git clone https://github.com/New-Byte/Android_Template.git")
 		print("Removing .git")
-		os.system("rmdir ./.git")
+		os.rmdir(".git")
 
 		# Write README.md
 		f = open("./README.md","w")
