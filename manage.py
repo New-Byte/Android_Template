@@ -20,7 +20,7 @@ try:
 		# os.system("git clone https://github.com/New-Byte/Android_Template.git")
 		os.system("attrib -h .git")
 		os.rename(".git","git")
-		os.system("rmdir git")
+		os.system("rmdir /S git")
 
 		# Write README.md
 		f = open("./README.md","w")
