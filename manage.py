@@ -19,16 +19,16 @@ try:
 		# Clone repository from github and remove .git dir.
 		# os.system("git clone https://github.com/New-Byte/Android_Template.git")
 		print("Removing .git")
-		os.system("rmdir ./.git")
+		os.system("rmdir Android_Template/.git")
 
 		# Write README.md
-		f = open("README.md","w")
+		f = open("Android_Template/README.md","w")
 		f.write("# " + arglist[2] + "\n" + "Project Description")
 		f.close()
 
 		# Rename root folder
 		print("Renaming root dir")
-		os.system("ren template " + arglist[2])
+		os.system("ren " +arglist[2] "/template " + arglist[2])
 
 		# Add gitignore file
 		f = open(arglist[2]+"/.gitignore","w")
