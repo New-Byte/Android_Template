@@ -19,7 +19,8 @@ try:
 		# Clone repository from github and remove .git dir.
 		# os.system("git clone https://github.com/New-Byte/Android_Template.git")
 		os.system("attrib -h .git")
-		os.rmdir(".git")
+		os.rename(".git","git")
+		os.system("rmdir git")
 
 		# Write README.md
 		f = open("./README.md","w")
