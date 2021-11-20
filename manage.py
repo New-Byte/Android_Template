@@ -39,23 +39,17 @@ try:
 		os.rename(arglist[2]+"/android/gradle", arglist[2]+"/android/.gradle")
 		os.rename(arglist[2]+"/android/idea", arglist[2]+"/android/.idea")
 
-		print("Template is almost ready....!!!!")
-
 		# Search for meraBharat in each file and replace it with app_name (arglist[2])
 
 		# Read all files in android dir.
-		print("Accessing all the files in template")
 		path = arglist[2]+"/android"
 		filelist = []
 		for root, dirs, files in os.walk(path):
 			for file in files:
 				filelist.append(os.path.join(root,file))
 
-		print("Reding all files...")
-
 		# Read each file
 		for x in filelist:
-			print("Reading File: " + x)
 			try:
 				f = open(x,"r")
 				f_data = f.readlines()
@@ -64,21 +58,16 @@ try:
 				continue
 			flag = 0
 			# Check if MeraBharat is present in file
-			print("Looking for MeraBharat in " + x)
 			for y in range(len(f_data)):
 				if "MeraBharat" in f_data[y]:
-					print("Replacing MeraBharat from line number: " + str(y + 1))
 					flag = 1
 					# Replace MeraBharat with app_name
 					f_data[y] = f_data[y].replace("MeraBharat", arglist[2])
-				print("Replaced!!!")
 			# Update file
-			print("Updating File: " + x)
 			if flag:
 				f = open(x,"w")
 				f.writelines(f_data)
 				f.close()
-				print("Done!!!")
 
 except:
 	print("============================================")
