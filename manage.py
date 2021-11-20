@@ -40,6 +40,25 @@ try:
 		os.rename(arglist[2]+"/android/idea", arglist[2]+"/android/.idea")
 
 		# Search for meraBharat in each file and replace it with app_name (arglist[2])
+
+		# Read all files in android dir.
+		path = arglist[2]+"/android"
+		filelist = []
+		for root, dirs, files in os.walk(path):
+			for file in files:
+				filelist.append(os.path.join(root,file))
+
+		# Read each file
+		for x in filelist:
+			f = open(x,"r")
+			f_data = f.readlines()
+			f.close()
+			# Check if MeraBharat is present in file
+			for y in range(len(f_data)):
+				if "MeraBharat" in f_data[y]:
+					# Replace MeraBharat with app_name
+					f_data[y] = f_data[y].replace("MeraBharat", arglist[2])
+
 except:
 	print("============================================")
 	print("\nmanage.py expects at least 1 argument,\n0 were given.\n\nE.g.: python manage.py --help\n")
