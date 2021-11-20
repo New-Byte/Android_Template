@@ -56,9 +56,12 @@ try:
 		# Read each file
 		for x in filelist:
 			print("Reading File: " + x)
-			f = open(x,"r")
-			f_data = f.readlines()
-			f.close()
+			try:
+				f = open(x,"r")
+				f_data = f.readlines()
+				f.close()
+			except:
+				continue
 			flag = 0
 			# Check if MeraBharat is present in file
 			print("Looking for MeraBharat in " + x)
