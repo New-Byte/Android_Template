@@ -41,10 +41,21 @@ try:
 
 		# Search for meraBharat in each file and replace it with app_name (arglist[2])
 
-		# Read all files in android dir.
 		path = arglist[2]+"/android"
+
+		# Read all files in android dir.
 		filelist = []
 		for root, dirs, files in os.walk(path):
+			# Change any dir with name MeraBharat and rename it with appname
+			if "MeraBharat" in dirs:
+				ind = dirs.index("MeraBharat")
+				dirs[ind] = arglist[2]
+			elif "MeraBharat".lower() in dirs:
+				ind = dirs.index("MeraBharat".lower())
+				dirs[ind] = arglist[2].lower()
+			elif "MeraBharat".upper() in dirs:
+				ind = dirs.index("MeraBharat".upper())
+				dirs[ind] = arglist[2].upper()
 			for file in files:
 				filelist.append(os.path.join(root,file))
 
@@ -57,6 +68,7 @@ try:
 			except:
 				continue
 			flag = 0
+
 			# Check if MeraBharat is present in file
 			for y in range(len(f_data)):
 				if "MeraBharat" in f_data[y]:
@@ -74,6 +86,28 @@ try:
 				f = open(x,"w")
 				f.writelines(f_data)
 				f.close()
+			app_nm = arglist[2]
+
+	elif arglist[1] == "--apk" or arglist[1] == "createapk":
+		try:
+			new_nm = arglist[3]
+		except:
+			new_nm = arglist[2] + "v1"
+		print("Creating logs....")
+		f = open(app_nm + "/apk/logs.txt","w")
+		f.write("Building App " + arglist[2] + ".....\n\n")
+		exit_stat = os.system(app_nm+"/android/gradlew assembleDebug >> " + app_nm + "/apk/logs.txt")
+		if exit_stat:
+			f.write("\n######OPERATION FAILED#######\n")
+			exit()
+		else:
+			f.write("\n######OPERATION IS SUCCESSFUL#######\n")
+		# Copy apk to apk dir
+		exit_stat1 = os.system("copy " + app_nm+"/android/build/outputs/apk/debug/app-debug.apk " + app_nm + "/apk/"+new_nm+".apk") 
+		if exit_stat1:
+			print("FAILED TO BUILD APK...\nCHECK LOGS"+"("+ app_nm+"/apk/logs.txt) FOR MORE INFO....")
+		else:
+			print("BUILD WAS SUCCESSFUL...\nAPK CREATED AT " + app_nm+"/apk/")
 
 except:
 	print("============================================")
