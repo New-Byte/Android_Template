@@ -90,12 +90,12 @@ try:
 
 	elif arglist[1] == "--apk" or arglist[1] == "createapk":
 		try:
-			new_nm = arglist[3]
+			new_nm = arglist[2]
 		except:
-			new_nm = arglist[2] + "v1"
+			new_nm = app_nm + "v1"
 		print("Creating logs....")
 		f = open(app_nm + "/apk/logs.txt","w")
-		f.write("Building App " + arglist[2] + ".....\n\n")
+		f.write("Building App " + app_nm + ".....\n\n")
 		exit_stat = os.system(app_nm+"/android/gradlew assembleDebug >> " + app_nm + "/apk/logs.txt")
 		if exit_stat:
 			f.write("\n######OPERATION FAILED#######\n")
