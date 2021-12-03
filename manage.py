@@ -63,6 +63,12 @@ try:
 					flag = 1
 					# Replace MeraBharat with app_name
 					f_data[y] = f_data[y].replace("MeraBharat", arglist[2])
+				elif "meraBharat".lower() in f_data:
+					flag = 1
+					f_data[y] = f_data[y].replace("MeraBharat".lower(), arglist[2].lower())
+				elif "meraBharat".upper() in f_data:
+					flag = 1
+					f_data[y] = f_data[y].replace("MeraBharat".upper(), arglist[2].upper())
 			# Update file
 			if flag:
 				f = open(x,"w")
