@@ -89,25 +89,31 @@ try:
 			app_nm = arglist[2]
 
 	elif arglist[1] == "--apk" or arglist[1] == "createapk":
+		ls = os.listdir('./')
+		app_nm = ls[1]
 		try:
 			new_nm = arglist[2]
 		except:
 			new_nm = app_nm + "v1"
 		print("Creating logs....")
-		f = open(app_nm + "/apk/logs.txt","w")
+		f = open(app_nm+"/apk/logs.txt","w")
 		f.write("Building App " + app_nm + ".....\n\n")
-		exit_stat = os.system(app_nm+"/android/gradlew assembleDebug >> " + app_nm + "/apk/logs.txt")
+		f.close()
+		exit_stat = os.system(os.path.join(app_nm+"\\android","gradlew")+" assembleDebug >> " + app_nm + "/apk/logs.txt")
 		if exit_stat:
+			f = open(app_nm+"/apk/logs.txt","a")
 			f.write("\n######OPERATION FAILED#######\n")
+			f.close()
 			exit()
 		else:
 			f.write("\n######OPERATION IS SUCCESSFUL#######\n")
-		# Copy apk to apk dir
-		exit_stat1 = os.system("copy " + app_nm+"/android/build/outputs/apk/debug/app-debug.apk " + app_nm + "/apk/"+new_nm+".apk") 
-		if exit_stat1:
-			print("FAILED TO BUILD APK...\nCHECK LOGS"+"("+ app_nm+"/apk/logs.txt) FOR MORE INFO....")
-		else:
-			print("BUILD WAS SUCCESSFUL...\nAPK CREATED AT " + app_nm+"/apk/")
+			f.close()
+			# Copy apk to apk dir
+			exit_stat1 = os.system("copy " + app_nm+"/android/build/outputs/apk/debug/app-debug.apk " + app_nm + "/apk/"+new_nm+".apk") 
+			if exit_stat1:
+				print("FAILED TO BUILD APK...\nCHECK LOGS"+"("+ app_nm+"/apk/logs.txt) FOR MORE INFO....")
+			else:
+				print("BUILD WAS SUCCESSFUL...\nAPK CREATED AT " + app_nm+"/apk/")
 
 except:
 	print("============================================")
