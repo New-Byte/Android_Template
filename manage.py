@@ -45,19 +45,22 @@ try:
 
 		# Read all files in android dir.
 		filelist = []
-		prev_path = path
+		prev_path = arglist[2]
 		for root, dirs, files in os.walk(path):
 			# Change any dir with name MeraBharat and rename it with appname
-			for dir_ in dirs:
-				dir_pth = os.path.join(root, dir_)
-				if "MeraBharat" in dir_pth:
-					os.rename(dir_path, prev_path+os.sep+"MeraBharat")
-				elif "MeraBharat".lower() in dir_pth:
-					os.rename(dir_path, prev_path+os.sep+"MeraBharat".lower())
-				elif "MeraBharat".upper() in dir_pth:
-					os.rename(dir_path, prev_path+os.sep+"MeraBharat".upper())
+			for dir0 in dirs:
+				dir_path = os.path.join(root, dir0)
+				if "MeraBharat" in dir_path:
+					os.rename(dir_path, prev_path + os.sep + "MeraBharat")
+				elif "MeraBharat".lower() in dir_path:
+					os.rename(dir_path, prev_path + os.sep + "MeraBharat".lower())
+				elif "MeraBharat".upper() in dir_path:
+					os.rename(dir_path, prev_path + os.sep + "MeraBharat".upper())
 				prev_path = dir_path
 
+			# read path to each file
+			for file in files:
+				filelist.append(os.path.join(root,file))
 
 		# Read each file
 		for x in filelist:
