@@ -45,19 +45,19 @@ try:
 
 		# Read all files in android dir.
 		filelist = []
+		prev_path = path
 		for root, dirs, files in os.walk(path):
 			# Change any dir with name MeraBharat and rename it with appname
-			if "MeraBharat" in dirs:
-				ind = dirs.index("MeraBharat")
-				dirs[ind] = arglist[2]
-			elif "MeraBharat".lower() in dirs:
-				ind = dirs.index("MeraBharat".lower())
-				dirs[ind] = arglist[2].lower()
-			elif "MeraBharat".upper() in dirs:
-				ind = dirs.index("MeraBharat".upper())
-				dirs[ind] = arglist[2].upper()
-			for file in files:
-				filelist.append(os.path.join(root,file))
+			for dir_ in dirs:
+				dir_pth = os.path.join(root, dir_)
+				if "MeraBharat" in dir_pth:
+					os.rename(dir_path, prev_path+os.sep+"MeraBharat")
+				elif "MeraBharat".lower() in dir_pth:
+					os.rename(dir_path, prev_path+os.sep+"MeraBharat".lower())
+				elif "MeraBharat".upper() in dir_pth:
+					os.rename(dir_path, prev_path+os.sep+"MeraBharat".upper())
+				prev_path = dir_path
+
 
 		# Read each file
 		for x in filelist:
@@ -90,7 +90,7 @@ try:
 
 	elif arglist[1] == "--apk" or arglist[1] == "createapk":
 		ls = os.listdir('./')
-		app_nm = ls[1]
+		app_nm = [x for x in ls if os.path.isdir(x)][0]
 		try:
 			new_nm = arglist[2]
 		except:
