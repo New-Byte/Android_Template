@@ -51,11 +51,11 @@ try:
 			for dir0 in dirs:
 				dir_path = os.path.join(root, dir0)
 				if "MeraBharat" in dir_path:
-					os.rename(dir_path, prev_path + os.sep + "MeraBharat")
+					os.rename(dir_path, prev_path + os.sep + arglist[2])
 				elif "MeraBharat".lower() in dir_path:
-					os.rename(dir_path, prev_path + os.sep + "MeraBharat".lower())
+					os.rename(dir_path, prev_path + os.sep + arglist[2].lower())
 				elif "MeraBharat".upper() in dir_path:
-					os.rename(dir_path, prev_path + os.sep + "MeraBharat".upper())
+					os.rename(dir_path, prev_path + os.sep + arglist[2].upper())
 				prev_path = dir_path
 
 			# read path to each file
