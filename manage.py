@@ -61,7 +61,7 @@ try:
 			# read path to each file
 			for file in files:
 				filelist.append(os.path.join(root,file))
-				print(filelist)
+			print(filelist)
 
 		# Read each file
 		for x in filelist:
