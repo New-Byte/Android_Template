@@ -68,7 +68,11 @@ try:
 				f = open(x,"r")
 				f_data = f.readlines()
 				f.close()
+				if "MainActivity.java" in x:
+					print(f_data)
 			except:
+				if "MainActivity.java" in x:
+					print("Unable to read MainActivity,java")
 				continue
 			flag = 0
 
