@@ -64,6 +64,7 @@ try:
 
 		# Read each file
 		for x in filelist:
+			print("reading file: "+x)
 			try:
 				f = open(x,"r")
 				f_data = f.readlines()
