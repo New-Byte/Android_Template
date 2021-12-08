@@ -61,10 +61,11 @@ try:
 			# read path to each file
 			for file in files:
 				filelist.append(os.path.join(root,file))
+				print(filelist)
 
 		# Read each file
 		for x in filelist:
-			print("reading file: "+x)
+			#print("reading file: "+x)
 			try:
 				f = open(x,"r")
 				f_data = f.readlines()
