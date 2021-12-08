@@ -86,10 +86,12 @@ try:
 					f_data[y] = f_data[y].replace("MeraBharat".upper(), arglist[2].upper())
 			# Update file
 			if flag:
+				if "MainActivity.java" in x:
+					print(f_data)
 				f = open(x,"w")
 				f.writelines(f_data)
 				f.close()
-			app_nm = arglist[2]
+		app_nm = arglist[2]
 
 	elif arglist[1] == "--apk" or arglist[1] == "createapk":
 		ls = os.listdir('./')
