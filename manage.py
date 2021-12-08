@@ -46,7 +46,7 @@ try:
 		# Read all files in android dir.
 		filelist = []
 		prev_path = arglist[2]
-		for root, dirs, files in os.walk(path, , topdown=True):
+		for root, dirs, files in os.walk(path, topdown=True):
 			# Change any dir with name MeraBharat and rename it with appname
 			for dir0 in dirs:
 				dir_path = os.path.join(root, dir0)
