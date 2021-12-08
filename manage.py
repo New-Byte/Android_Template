@@ -62,6 +62,7 @@ try:
 			for file in files:
 				#filelist.append(os.path.join(root,file))
 				x = os.path.join(root,file)
+				print("File: " + x)
 				try:
 					f = open(x,"r")
 					f_data = f.readlines()
