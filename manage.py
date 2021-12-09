@@ -97,6 +97,7 @@ try:
 					f = open(r+"'"+x+"'","r")
 					f_data = f.readlines()
 					f.close()
+					print(f_data)
 				except:
 					continue
 				flag = 0
@@ -109,6 +110,7 @@ try:
 					elif "meraBharat".lower() in f_data[y]:
 						flag = 1
 						f_data[y] = f_data[y].replace("MeraBharat".lower(), arglist[2].lower())
+						print("Replaced....")
 					elif "meraBharat".upper() in f_data[y]:
 						flag = 1
 						f_data[y] = f_data[y].replace("MeraBharat".upper(), arglist[2].upper())
@@ -117,6 +119,7 @@ try:
 					f = open(r+"'"+x+"'","w")
 					f.writelines(f_data)
 					f.close()
+					print("Done....")
 
 		app_nm = arglist[2]
 
