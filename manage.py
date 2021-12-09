@@ -62,7 +62,7 @@ try:
 			for file in files:
 				#filelist.append(os.path.join(root,file))
 				x = os.path.join(root,file)
-				print("File: " + x)
+				#print("File: " + x)
 				try:
 					f = open(r+"'"+x+"'","r")
 					f_data = f.readlines()
@@ -87,6 +87,36 @@ try:
 					f = open(r+"'"+x+"'","w")
 					f.writelines(f_data)
 					f.close()
+
+		# Update java dir
+		for root, dirs, files in os.walk(path+"/app/src/main/java", topdown=True):
+			for file in files:
+				x = os.path.join(root,file)
+				try:
+					f = open(r+"'"+x+"'","r")
+					f_data = f.readlines()
+					f.close()
+				except:
+					continue
+				flag = 0
+				# Check if MeraBharat is present in file
+				for y in range(len(f_data)):
+					if "MeraBharat" in f_data[y]:
+						flag = 1
+						# Replace MeraBharat with app_name
+						f_data[y] = f_data[y].replace("MeraBharat", arglist[2])
+					elif "meraBharat".lower() in f_data[y]:
+						flag = 1
+						f_data[y] = f_data[y].replace("MeraBharat".lower(), arglist[2].lower())
+					elif "meraBharat".upper() in f_data[y]:
+						flag = 1
+						f_data[y] = f_data[y].replace("MeraBharat".upper(), arglist[2].upper())
+				# Update file
+				if flag:
+					f = open(r+"'"+x+"'","w")
+					f.writelines(f_data)
+					f.close()
+					
 		app_nm = arglist[2]
 
 	elif arglist[1] == "--apk" or arglist[1] == "createapk":
