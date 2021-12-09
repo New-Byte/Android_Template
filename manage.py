@@ -89,9 +89,10 @@ try:
 					f.close()
 
 		# Update java dir
-		for root, dirs, files in os.walk(path+"/app/src/main/java", topdown=True):
+		for root, dirs, files in os.walk(path+"/app/src/main/java/", topdown=True):
 			for file in files:
 				x = os.path.join(root,file)
+				print(x)
 				try:
 					f = open(r+"'"+x+"'","r")
 					f_data = f.readlines()
@@ -116,7 +117,7 @@ try:
 					f = open(r+"'"+x+"'","w")
 					f.writelines(f_data)
 					f.close()
-					
+
 		app_nm = arglist[2]
 
 	elif arglist[1] == "--apk" or arglist[1] == "createapk":
