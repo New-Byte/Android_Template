@@ -64,7 +64,7 @@ try:
 				x = os.path.join(root,file)
 				print("File: " + x)
 				try:
-					f = open(x,"r")
+					f = open(r+"'"+x+"'","r")
 					f_data = f.readlines()
 					f.close()
 				except:
@@ -84,7 +84,7 @@ try:
 						f_data[y] = f_data[y].replace("MeraBharat".upper(), arglist[2].upper())
 				# Update file
 				if flag:
-					f = open(x,"w")
+					f = open(r+"'"+x+"'","w")
 					f.writelines(f_data)
 					f.close()
 		app_nm = arglist[2]
