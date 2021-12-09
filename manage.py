@@ -92,7 +92,6 @@ try:
 		for root, dirs, files in os.walk(path+"/app/src/main/java/", topdown=True):
 			for file in files:
 				x = os.path.join(root,file)
-				print(x)
 				try:
 					f = open(x,"r")
 					f_data = f.readlines()
@@ -110,7 +109,6 @@ try:
 					elif "meraBharat".lower() in f_data[y]:
 						flag = 1
 						f_data[y] = f_data[y].replace("MeraBharat".lower(), arglist[2].lower())
-						print("Replaced....")
 					elif "meraBharat".upper() in f_data[y]:
 						flag = 1
 						f_data[y] = f_data[y].replace("MeraBharat".upper(), arglist[2].upper())
@@ -119,7 +117,6 @@ try:
 					f = open(x,"w")
 					f.writelines(f_data)
 					f.close()
-					print("Done....")
 
 		app_nm = arglist[2]
 
