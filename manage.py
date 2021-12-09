@@ -64,7 +64,7 @@ try:
 				x = os.path.join(root,file)
 				#print("File: " + x)
 				try:
-					f = open(r+"'"+x+"'","r")
+					f = open(x,"r")
 					f_data = f.readlines()
 					f.close()
 				except:
@@ -84,7 +84,7 @@ try:
 						f_data[y] = f_data[y].replace("MeraBharat".upper(), arglist[2].upper())
 				# Update file
 				if flag:
-					f = open(r+"'"+x+"'","w")
+					f = open(x,"w")
 					f.writelines(f_data)
 					f.close()
 
@@ -94,12 +94,12 @@ try:
 				x = os.path.join(root,file)
 				print(x)
 				try:
-					f = open(r+"'"+x+"'","r")
+					f = open(x,"r")
 					f_data = f.readlines()
 					f.close()
 					print(f_data)
 				except:
-					continue
+					print("Error....")
 				flag = 0
 				# Check if MeraBharat is present in file
 				for y in range(len(f_data)):
@@ -116,7 +116,7 @@ try:
 						f_data[y] = f_data[y].replace("MeraBharat".upper(), arglist[2].upper())
 				# Update file
 				if flag:
-					f = open(r+"'"+x+"'","w")
+					f = open(x,"w")
 					f.writelines(f_data)
 					f.close()
 					print("Done....")
