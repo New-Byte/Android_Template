@@ -96,7 +96,6 @@ try:
 					f = open(x,"r")
 					f_data = f.readlines()
 					f.close()
-					print(f_data)
 				except:
 					print("Error....")
 				flag = 0
