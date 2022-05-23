@@ -135,9 +135,13 @@ try:
 			print("Building Front-end....")
 			os.system("python ./"+arglist[2].lower()+"/lib/main.py")
 			print("Breaking Stuff....")
-			os.system("rm ./"+arglist.lower()+"/android/app/src/main/res/layout/activity_main.xml")
+			#ptttth = "./{abc}/android/app/src/main/res/layout/activity_main.xml".format(abc=arglist.lower())
+			ptttth = "./"+arglist[2].lower()+"/android/app/src/main/res/layout/activity_main.xml"
+			#print(ptttth)
+			os.remove(ptttth)
 			print("Arranging Stuff....")
-			os.system("move './activity_main.xml' './"+arglist.lower()+"/android/app/src/main/res/layout/'")
+			os.system("move ./activity_main.xml ./"+arglist[2].lower()+"/android/app/src/main/res/layout")
+			os.remove("./SymbolTableManager.json")
 			print("Done!!!")
 
 		except:
