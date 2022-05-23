@@ -135,7 +135,7 @@ try:
 			print("Building Front-end....")
 			os.system("python ./"+arglist[2].lower()+"/lib/main.py")
 			print("Arranging Stuff....")
-			os.system("rm ./"++arglist.lower()+"/android/app/src/main/res/layout/activity_main.xml")
+			os.system("rm ./"+arglist.lower()+"/android/app/src/main/res/layout/activity_main.xml")
 			os.system("move './activity_main.xml' './"+arglist.lower()+"/android/app/src/main/res/layout/'")
 			print("Done!!!")
 
