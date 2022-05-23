@@ -123,13 +123,23 @@ try:
 
 	elif arglist[1] == "--launch" or arglist[1] == "launchapp":
 		try:
+			try:
+				n95 = arglist[2]
+			except:
+				print("MissingApplicationError: --launch flag expects a application name as parameter")
+			
+			print("Feeding Scanner...")
 			sc.main(arglist[2])
+			print("Processing....")
 			bk.Runbackend(arglist[2])
+			print("Building Front-end....")
 			os.system("python ./"+arglist[2].lower()+"/lib/main.py")
+			print("Arranging Stuff....")
 			os.system("cp ./"+arglist[2].lower()+"/lib/activity_main.xml ./"+arglist.lower()+"/android/app/src/main/res/layout/")
+			print("Done!!!")
 
 		except:
-			print("MissingApplicationError: --launch flag expects a application name as parameter")
+			print("Error: Something Went wrong!")
 
 	elif arglist[1] == "--apk" or arglist[1] == "createapk":
 		ls = os.listdir('./')
