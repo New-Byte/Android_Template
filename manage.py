@@ -135,7 +135,7 @@ try:
 			print("Building Front-end....")
 			os.system("python ./"+arglist[2].lower()+"/lib/main.py")
 			print("Arranging Stuff....")
-			os.system("cp ./"+arglist[2].lower()+"/lib/activity_main.xml ./"+arglist.lower()+"/android/app/src/main/res/layout/")
+			os.system("cp ./activity_main.xml ./"+arglist.lower()+"/android/app/src/main/res/layout/")
 			print("Done!!!")
 
 		except:
