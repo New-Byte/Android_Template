@@ -134,8 +134,9 @@ try:
 			bk.Runbackend(arglist[2])
 			print("Building Front-end....")
 			os.system("python ./"+arglist[2].lower()+"/lib/main.py")
-			print("Arranging Stuff....")
+			print("Breaking Stuff....")
 			os.system("rm ./"+arglist.lower()+"/android/app/src/main/res/layout/activity_main.xml")
+			print("Arranging Stuff....")
 			os.system("move './activity_main.xml' './"+arglist.lower()+"/android/app/src/main/res/layout/'")
 			print("Done!!!")
 
