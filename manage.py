@@ -6,6 +6,8 @@ Date:               01 NOVEMBER 2021
 
 import sys
 import os
+import Omegalib.scanner as sc
+import Omegalib.backend as bk
 
 arglist = sys.argv
 
@@ -119,6 +121,16 @@ try:
 
 		app_nm = arglist[2]
 
+	elif arglist[1] == "--launch" or arglist[1] == "launchapp":
+		try:
+			sc.main(arglist[2])
+			bk.Runbackend(arglist[2])
+			os.system("python ./"+arglist[2].lower()+"/lib/main.py")
+			os.system("cp ./"+arglist[2].lower()+"/lib/activity_main.xml ./"+arglist.lower()+"/android/app/src/main/res/layout/")
+
+		except:
+			print("MissingApplicationError: --launch flag expects a application name as parameter")
+
 	elif arglist[1] == "--apk" or arglist[1] == "createapk":
 		ls = os.listdir('./')
 		app_nm = [x for x in ls if os.path.isdir(x)][0]
@@ -130,21 +142,28 @@ try:
 		f = open(app_nm+"/apk/logs.txt","w")
 		f.write("Building App " + app_nm + ".....\n\n")
 		f.close()
-		exit_stat = os.system(os.path.join(app_nm+"\\android","gradlew")+" assembleDebug >> " + app_nm + "/apk/logs.txt")
-		if exit_stat:
+		try:
 			f = open(app_nm+"/apk/logs.txt","a")
-			f.write("\n######OPERATION FAILED#######\n")
-			f.close()
-			exit()
-		else:
-			f.write("\n######OPERATION IS SUCCESSFUL#######\n")
-			f.close()
 			# Copy apk to apk dir
-			exit_stat1 = os.system("copy " + app_nm+"/android/build/outputs/apk/debug/app-debug.apk " + app_nm + "/apk/"+new_nm+".apk") 
+			exit_stat1 = os.system("copy "+app_nm+"/android/app/build/outputs/apk/debug/app-debug.apk " +app_nm+"/apk/"+new_nm+".apk") 
 			if exit_stat1:
+				f.write("\n######OPERATION HAS FAILED#######\n")
+				f.write("Solution: try to run app before creating apk")
 				print("FAILED TO BUILD APK...\nCHECK LOGS"+"("+ app_nm+"/apk/logs.txt) FOR MORE INFO....")
 			else:
+				f.write("\n######OPERATION IS SUCCESSFUL#######\n")
+				f.write("APk is stored in "+app_nm+"/apk folder")
 				print("BUILD WAS SUCCESSFUL...\nAPK CREATED AT " + app_nm+"/apk/")
+
+			f.close()
+			print("Done")
+		except:
+			f = open(app_nm+"/apk/logs.txt","a")
+			f.write("\n######OPERATION HAS FAILED#######\n")
+			f.write("Solution: try to run app before creating apk")
+			print("FAILED TO BUILD APK...\nCHECK LOGS"+"("+ app_nm+"/apk/logs.txt) FOR MORE INFO....")
+			f.close()
+			
 
 except:
 	print("============================================")
