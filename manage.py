@@ -8,8 +8,20 @@ import sys
 import os
 import Omegalib.scanner as sc
 import Omegalib.backend as bk
+import time
+import multiprocessing
 
 arglist = sys.argv
+
+def launch_emulator():
+	print("Launching the Emulator....")
+	os.system("emulator "+'"@NEXUS_5X"')
+
+def installapk(arglist):
+	print("Installing APK for "+arglist+"....")
+	os.chdir("./"+arglist+"/android")
+	os.system("gradlew installDebug")
+	os.chdir("../../")
 
 try:
 	# Help options
@@ -130,9 +142,12 @@ try:
 			
 			print("Feeding Scanner...")
 			sc.main(arglist[2])
+			time.sleep(1)
 			print("Processing....")
+			time.sleep(3)
 			bk.Runbackend(arglist[2])
 			print("Building Front-end....")
+			time.sleep(2)
 			os.system("python ./"+arglist[2].lower()+"/lib/main.py")
 			print("Breaking Stuff....")
 			#ptttth = "./{abc}/android/app/src/main/res/layout/activity_main.xml".format(abc=arglist.lower())
@@ -141,11 +156,26 @@ try:
 			os.remove(ptttth)
 			print("Arranging Stuff....")
 			os.system("move ./activity_main.xml ./"+arglist[2].lower()+"/android/app/src/main/res/layout")
-			os.remove("./SymbolTableManager.json")
+			try:
+				os.remove("./SymbolTableManager.json")
+			except:
+				pass
+			time.sleep(1)
+			p1 = multiprocessing.Process(target=launch_emulator, args=())
+			time.sleep(5)
+			p2 = multiprocessing.Process(target=installapk, args=(arglist[2].lower(),))
+			# starting process 1
+			p1.start()
+			time.sleep(10)
+			# starting process 2
+			p2.start()
+			#p1.join()
+			p2.join()
 			print("Done!!!")
 
-		except:
+		except Exception as e:
 			print("Error: Something Went wrong!")
+			print(e)
 
 	elif arglist[1] == "--apk" or arglist[1] == "createapk":
 		ls = os.listdir('./')
